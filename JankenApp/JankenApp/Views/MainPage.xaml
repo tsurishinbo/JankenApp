@@ -4,8 +4,132 @@
              x:Class="JankenApp.Views.MainPage"
              Title="{Binding Title}">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
-    </StackLayout>
-
+    <Grid>
+        <!-- Grid定義 -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <!-- 結果表示 -->
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+               Text="{Binding Result.Value}"
+               TextColor="{Binding ResultColor.Value}"
+               FontSize="Large"
+               BackgroundColor="Beige"
+               HorizontalTextAlignment="Center" 
+               VerticalTextAlignment="Center" />
+        <!-- 勝敗数 -->
+        <StackLayout Grid.Row="1" Grid.Column="0" BackgroundColor="LightPink">
+            <Label Text="WIN" 
+                   FontSize="Medium" 
+                   HorizontalOptions="Center" />
+            <Label Text="{Binding WinCount.Value}" 
+                   FontSize="Large" 
+                   HorizontalOptions="Center"
+                   TextColor="Red" />
+        </StackLayout>
+        <StackLayout Grid.Row="1" Grid.Column="1" BackgroundColor="LightGreen">
+            <Label Text="DRAW" 
+                   FontSize="Medium" 
+                   HorizontalOptions="Center" />
+            <Label Text="{Binding DrawCount.Value}" 
+                   FontSize="Large" 
+                   HorizontalOptions="Center"
+                   TextColor="Green" />
+        </StackLayout>
+        <StackLayout Grid.Row="1" Grid.Column="2" BackgroundColor="LightBlue">
+            <Label Text="LOSE" 
+                   FontSize="Medium"
+                   HorizontalOptions="Center" />
+            <Label Text="{Binding LoseCount.Value}" 
+                   FontSize="Large" 
+                   HorizontalOptions="Center"
+                   TextColor="Blue" />
+        </StackLayout>
+        <!-- コンピュータの手 -->
+        <ImageButton Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                     Source="{Binding ComputerHandImage.Value}"
+                     Command="{Binding CommandStart}"
+                     CommandParameter="{Binding ComuputerHand.Value}"
+                     BackgroundColor="Transparent"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center" />
+        <!-- プレイヤーの手 -->
+        <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                     Orientation="Horizontal"
+                     HorizontalOptions="Center"
+                     Spacing="50">
+            <ImageButton Source="{Binding ButtonImageGu.Value}" 
+                         Command="{Binding CommandSelect}"
+                         CommandParameter="{Binding ButtonParameterGu.Value}"
+                         BackgroundColor="Transparent"
+                         WidthRequest="100"
+                         HeightRequest="100">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+            <ImageButton Source="{Binding ButtonImageChoki.Value}" 
+                         Command="{Binding CommandSelect}"
+                         CommandParameter="{Binding ButtonParameterChoki.Value}"
+                         BackgroundColor="Transparent"
+                         WidthRequest="100"
+                         HeightRequest="100">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+            <ImageButton Source="{Binding ButtonImagePa.Value}" 
+                         Command="{Binding CommandSelect}"
+                         CommandParameter="{Binding ButtonParameterPa.Value}"
+                         BackgroundColor="Transparent"
+                         WidthRequest="100"
+                         HeightRequest="100">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+        </StackLayout>
+    </Grid>
+    
 </ContentPage>
